@@ -19,6 +19,21 @@
   --uns-sidebar-width: 260px;
 }
 
+/* Base de dimensiones */
+html,
+body {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: var(--uns-bg);
@@ -32,14 +47,22 @@ body {
 /* ====================================================================
    NAVBAR & SIDEBAR LAYOUT
    ==================================================================== */
+
 .app-wrapper {
   display: flex;
-  min-height: 100vh;
+  flex-direction: row;
+  align-items: stretch;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  flex: 1 1 auto;
 }
 
 .app-sidebar {
+  flex: 0 0 var(--uns-sidebar-width);
   width: var(--uns-sidebar-width);
+  max-width: var(--uns-sidebar-width);
   background: linear-gradient(180deg, var(--uns-red-dark) 0%, var(--uns-red) 100%);
   color: #FFFFFF;
   display: flex;
@@ -180,15 +203,22 @@ body {
 /* ====================================================================
    MAIN CONTENT AREA
    ==================================================================== */
+
 .app-main {
-  flex: 1;
+  flex: 1 1 0%;
+  width: calc(100% - var(--uns-sidebar-width));
+  max-width: calc(100% - var(--uns-sidebar-width));
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  min-width: 0;
   background-color: var(--uns-bg);
+  overflow-x: hidden;
 }
 
 .top-navbar {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   height: 64px;
   background-color: var(--uns-surface);
   border-bottom: 1px solid var(--uns-border);
@@ -202,6 +232,15 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
+.top-navbar > div {
+  min-width: 0;
+}
+
+.top-navbar-title {
+  min-width: 0;
+  white-space: nowrap;
+}
+
 .top-navbar-title {
   display: flex;
   align-items: center;
@@ -213,13 +252,19 @@ body {
 }
 
 .content-body {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: 1.75rem;
-  flex: 1;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
 /* ====================================================================
    CARD COMPONENTS & STATS
    ==================================================================== */
+
 .uns-card {
   background: var(--uns-surface);
   border: 1px solid var(--uns-border);
@@ -253,6 +298,7 @@ body {
 }
 
 /* Tarjetas de Estadísticas (KPI) */
+
 .kpi-card {
   position: relative;
   background: #FFFFFF;
@@ -267,11 +313,25 @@ body {
   border-left: 5px solid var(--uns-red);
 }
 
-.kpi-card.kpi-gold { border-left-color: var(--uns-gold); }
-.kpi-card.kpi-blue { border-left-color: #0d6efd; }
-.kpi-card.kpi-green { border-left-color: #198754; }
-.kpi-card.kpi-orange { border-left-color: #fd7e14; }
-.kpi-card.kpi-danger { border-left-color: #dc3545; }
+.kpi-card.kpi-gold {
+  border-left-color: var(--uns-gold);
+}
+
+.kpi-card.kpi-blue {
+  border-left-color: #0d6efd;
+}
+
+.kpi-card.kpi-green {
+  border-left-color: #198754;
+}
+
+.kpi-card.kpi-orange {
+  border-left-color: #fd7e14;
+}
+
+.kpi-card.kpi-danger {
+  border-left-color: #dc3545;
+}
 
 .kpi-info h6 {
   font-size: 0.82rem;
@@ -302,14 +362,30 @@ body {
   color: var(--uns-red);
 }
 
-.kpi-card.kpi-gold .kpi-icon { background: rgba(197, 155, 39, 0.12); color: var(--uns-gold-dark); }
-.kpi-card.kpi-blue .kpi-icon { background: rgba(13, 110, 253, 0.1); color: #0d6efd; }
-.kpi-card.kpi-green .kpi-icon { background: rgba(25, 135, 84, 0.1); color: #198754; }
-.kpi-card.kpi-orange .kpi-icon { background: rgba(253, 126, 20, 0.12); color: #fd7e14; }
+.kpi-card.kpi-gold .kpi-icon {
+  background: rgba(197, 155, 39, 0.12);
+  color: var(--uns-gold-dark);
+}
+
+.kpi-card.kpi-blue .kpi-icon {
+  background: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+}
+
+.kpi-card.kpi-green .kpi-icon {
+  background: rgba(25, 135, 84, 0.1);
+  color: #198754;
+}
+
+.kpi-card.kpi-orange .kpi-icon {
+  background: rgba(253, 126, 20, 0.12);
+  color: #fd7e14;
+}
 
 /* ====================================================================
    ESTADOS Y BADGES INSTITUCIONALES
    ==================================================================== */
+
 .badge-estado {
   font-size: 0.78rem;
   font-weight: 600;
@@ -354,6 +430,7 @@ body {
 /* ====================================================================
    BOTONES INSTITUCIONALES UNS
    ==================================================================== */
+
 .btn-uns-primary {
   background-color: var(--uns-red);
   border-color: var(--uns-red);
@@ -361,7 +438,8 @@ body {
   font-weight: 600;
 }
 
-.btn-uns-primary:hover, .btn-uns-primary:focus {
+.btn-uns-primary:hover,
+.btn-uns-primary:focus {
   background-color: var(--uns-red-dark);
   border-color: var(--uns-red-dark);
   color: #FFFFFF;
@@ -374,7 +452,8 @@ body {
   font-weight: 600;
 }
 
-.btn-uns-gold:hover, .btn-uns-gold:focus {
+.btn-uns-gold:hover,
+.btn-uns-gold:focus {
   background-color: var(--uns-gold-dark);
   border-color: var(--uns-gold-dark);
   color: #FFFFFF;
@@ -395,6 +474,7 @@ body {
 /* ====================================================================
    TABLAS Y FORMULARIOS
    ==================================================================== */
+
 .uns-table thead th {
   background-color: #F8FAFC;
   color: var(--uns-text);
@@ -424,7 +504,8 @@ body {
   margin-bottom: 0.35rem;
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
   border-color: var(--uns-red-light);
   box-shadow: 0 0 0 0.25rem rgba(139, 21, 39, 0.18);
 }
@@ -432,6 +513,7 @@ body {
 /* ====================================================================
    BANNER DE SEGURIDAD / DR-01
    ==================================================================== */
+
 .dr01-alert-box {
   background-color: #FFF5F5;
   border-left: 6px solid #E53E3E;
@@ -454,6 +536,7 @@ body {
 /* ====================================================================
    MONITOREO INDICADORES
    ==================================================================== */
+
 .health-indicator {
   display: inline-flex;
   align-items: center;
@@ -479,14 +562,26 @@ body {
 }
 
 @keyframes pulseGreen {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 115, 51, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(19, 115, 51, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 115, 51, 0); }
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(19, 115, 51, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 7px rgba(19, 115, 51, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(19, 115, 51, 0);
+  }
 }
 
 /* ====================================================================
    LOGIN SCREEN
    ==================================================================== */
+
 .login-page-body {
   min-height: 100vh;
   background-color: var(--uns-red-dark);
@@ -550,38 +645,163 @@ body {
 /* ====================================================================
    RESPONSIVE DESIGN
    ==================================================================== */
+
 @media (max-width: 992px) {
+
   .app-sidebar {
     position: fixed;
     left: -260px;
     height: 100vh;
   }
+
   .app-sidebar.show {
     left: 0;
   }
+
   .app-main {
     margin-left: 0;
     width: 100%;
+    max-width: 100%;
   }
 }
-.app-main {
-    min-width: 0 !important;
-    width: 0;
-    flex: 1 1 auto;
-}
 
-.content-body {
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    overflow-x: hidden;
-}
-
-.content-body > * {
-    max-width: 100%;
+.uns-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: var(--uns-surface);
+  border: 1px solid var(--uns-border);
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
 .table-responsive {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.uns-table {
+  width: 100%;
+  min-width: 900px;
+}
+
+/* ====================================================================
+   LOGIN SCREEN
+   ==================================================================== */
+
+.login-page-body {
+  min-height: 100vh;
+  background-color: var(--uns-red-dark);
+  background-image: url('../img/login_bg.svg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.login-card-container {
+  width: 100%;
+  max-width: 440px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  border-top: 5px solid var(--uns-gold);
+}
+
+.login-header {
+  text-align: center;
+  padding: 2.2rem 2rem 1.2rem;
+  background: #FFFFFF;
+}
+
+.login-header img {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 1rem;
+}
+
+.login-header h4 {
+  font-weight: 800;
+  color: var(--uns-red-dark);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.5px;
+}
+
+.login-header p {
+  color: var(--uns-text-muted);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.login-body {
+  padding: 1.5rem 2rem 2.2rem;
+}
+
+.credential-quick-selector {
+  background-color: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-top: 1.25rem;
+  font-size: 0.78rem;
+}
+
+
+/* ====================================================================
+   RESPONSIVE DESIGN
+   ==================================================================== */
+
+@media (max-width: 992px) {
+
+  .app-sidebar {
+    position: fixed;
+    left: -260px;
+    height: 100vh;
+  }
+
+  .app-sidebar.show {
+    left: 0;
+  }
+
+  .app-main {
+    margin-left: 0;
+    width: 100%;
     max-width: 100%;
-    overflow-x: auto;
+  }
+}
+
+
+/* ====================================================================
+   TARJETAS Y TABLAS
+   ==================================================================== */
+
+.uns-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: var(--uns-surface);
+  border: 1px solid var(--uns-border);
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.table-responsive {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.uns-table {
+  width: 100%;
+  min-width: 900px;
 }
