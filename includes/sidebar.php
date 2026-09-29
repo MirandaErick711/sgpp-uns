@@ -1,6 +1,6 @@
 <?php
 /**
- * Sidebar del SGPP-UNS - Navegación adaptable por rol
+ * Sidebar del SGPP-UNS - Navegación adaptable y simplificada por rol
  */
 $rol = obtenerRolActual();
 $paginaActual = basename($_SERVER['PHP_SELF'], '.php');
@@ -9,96 +9,70 @@ $paginaActual = basename($_SERVER['PHP_SELF'], '.php');
     <div class="sidebar-brand">
         <img src="assets/img/logo_uns.png" alt="Logo UNS">
         <div class="brand-text">
-            <h1 class="brand-title">SGPP-UNS</h1>
-            <span class="brand-sub">Univ. Nac. del Santa</span>
+            <span class="brand-title">SGPP-UNS</span>
+            <span class="brand-sub">UNS &bull; EPISI</span>
         </div>
     </div>
 
     <div class="sidebar-nav">
-        
+        <!-- INICIO COMÚN -->
+        <a href="index.php" class="sidebar-link <?= ($paginaActual === 'index' || $paginaActual === 'dashboard') ? 'active' : '' ?>">
+            <i class="bi bi-house-door"></i> Inicio
+        </a>
+
         <?php if ($rol === 'estudiante'): ?>
-            <!-- NAVEGACIÓN ESTUDIANTE -->
-            <div class="nav-section-title">Panel de Estudiante</div>
-            <a href="index.php" class="sidebar-link <?= ($paginaActual === 'index' || $paginaActual === 'dashboard') ? 'active' : '' ?>">
-                <i class="bi bi-grid-1x2-fill"></i> Dashboard
-            </a>
+            <!-- ESTUDIANTE -->
             <a href="proyectos.php" class="sidebar-link <?= ($paginaActual === 'proyectos' || $paginaActual === 'proyecto') ? 'active' : '' ?>">
-                <i class="bi bi-folder-fill"></i> Mis Proyectos
+                <i class="bi bi-folder"></i> Mis Proyectos
             </a>
             <a href="nuevo_proyecto.php" class="sidebar-link <?= ($paginaActual === 'nuevo_proyecto') ? 'active' : '' ?>">
-                <i class="bi bi-plus-circle-fill"></i>Nuevo Proyecto
+                <i class="bi bi-plus-circle"></i> Nuevo Proyecto
             </a>
             <a href="observaciones.php" class="sidebar-link <?= ($paginaActual === 'observaciones') ? 'active' : '' ?>">
-                <i class="bi bi-chat-left-dots-fill"></i> Observaciones
+                <i class="bi bi-chat-square-text"></i> Observaciones
             </a>
 
         <?php elseif ($rol === 'docente'): ?>
-            <!-- NAVEGACIÓN DOCENTE -->
-            <div class="nav-section-title">Panel de Docente Asesor</div>
-            <a href="index.php" class="sidebar-link <?= ($paginaActual === 'index' || $paginaActual === 'dashboard') ? 'active' : '' ?>">
-                <i class="bi bi-grid-1x2-fill"></i> Dashboard
-            </a>
+            <!-- DOCENTE -->
             <a href="entregables.php" class="sidebar-link <?= ($paginaActual === 'entregables' || $paginaActual === 'revisar') ? 'active' : '' ?>">
-                <i class="bi bi-inbox-fill"></i> Entregables a Revisar
+                <i class="bi bi-clipboard-check"></i> Entregables
             </a>
             <a href="proyectos.php" class="sidebar-link <?= ($paginaActual === 'proyectos' || $paginaActual === 'proyecto') ? 'active' : '' ?>">
-                <i class="bi bi-collection-fill"></i> Proyectos Académicos
+                <i class="bi bi-folder"></i> Proyectos
             </a>
 
         <?php elseif ($rol === 'coordinador'): ?>
-            <!-- NAVEGACIÓN COORDINADOR -->
-            <div class="nav-section-title">Coordinación de Proyectos</div>
-            <a href="index.php" class="sidebar-link <?= ($paginaActual === 'index' || $paginaActual === 'dashboard') ? 'active' : '' ?>">
-                <i class="bi bi-grid-1x2-fill"></i> Dashboard
-            </a>
+            <!-- COORDINADOR -->
             <a href="proyectos.php" class="sidebar-link <?= ($paginaActual === 'proyectos' || $paginaActual === 'proyecto') ? 'active' : '' ?>">
-                <i class="bi bi-kanban-fill"></i> Todos los Proyectos
+                <i class="bi bi-folder"></i> Proyectos
             </a>
             <a href="reportes.php" class="sidebar-link <?= ($paginaActual === 'reportes') ? 'active' : '' ?>">
-                <i class="bi bi-file-earmark-bar-graph-fill"></i> Reportes de Avance
+                <i class="bi bi-file-earmark-bar-graph"></i> Reportes
             </a>
 
         <?php elseif ($rol === 'autoridad'): ?>
-            <!-- NAVEGACIÓN AUTORIDAD -->
-            <div class="nav-section-title">Dirección y Decanatura</div>
-            <a href="index.php" class="sidebar-link <?= ($paginaActual === 'index' || $paginaActual === 'dashboard') ? 'active' : '' ?>">
-                <i class="bi bi-speedometer2"></i> Dashboard Ejecutivo
-            </a>
+            <!-- AUTORIDAD -->
             <a href="reportes.php" class="sidebar-link <?= ($paginaActual === 'reportes') ? 'active' : '' ?>">
-                <i class="bi bi-pie-chart-fill"></i> Reportes Generales
+                <i class="bi bi-file-earmark-bar-graph"></i> Reportes
             </a>
             <a href="proyectos.php" class="sidebar-link <?= ($paginaActual === 'proyectos' || $paginaActual === 'proyecto') ? 'active' : '' ?>">
-                <i class="bi bi-journals"></i> Proyectos UNS
+                <i class="bi bi-folder"></i> Proyectos
             </a>
         <?php endif; ?>
 
-        <!-- SECCIÓN COMÚN: MONITOREO Y ARQUITECTURA -->
-        <div class="nav-section-title">Supervisión y Arquitectura</div>
-        <a href="monitoreo.php" class="sidebar-link <?= ($paginaActual === 'monitoreo') ? 'active' : '' ?>">
-            <i class="bi bi-activity"></i> Monitoreo
-        </a>
+        <!-- MONITOREO DEL SISTEMA -->
+        <?php if ($rol !== 'estudiante' && $rol !== 'docente'): ?>
+            <a href="monitoreo.php" class="sidebar-link <?= ($paginaActual === 'monitoreo') ? 'active' : '' ?>">
+                <i class="bi bi-activity"></i> Monitoreo
+            </a>
+        <?php endif; ?>
 
-        <!-- ACCIONES RÁPIDAS -->
-        <div class="nav-section-title">Cuenta</div>
-        <a href="logout.php" class="sidebar-link text-danger-emphasis">
+        <!-- SEPARADOR -->
+        <div class="sidebar-divider mt-auto"></div>
+
+        <!-- CERRAR SESIÓN -->
+        <a href="logout.php" class="sidebar-link text-white-50">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
         </a>
-    </div>
-
-    <!-- PIE DEL SIDEBAR CON USUARIO ACTUAL -->
-    <div class="sidebar-footer">
-        <div class="user-chip">
-            <div class="user-avatar-circle">
-                <?= strtoupper(substr($_SESSION['usuario_nombres'] ?? 'U', 0, 1)) ?>
-            </div>
-            <div class="overflow-hidden">
-                <div class="fw-bold text-truncate text-white" style="font-size: 0.85rem;">
-                    <?= htmlspecialchars($_SESSION['usuario_nombre_completo'] ?? 'Usuario') ?>
-                </div>
-                <div class="text-uppercase" style="font-size: 0.7rem; color: var(--uns-gold-light); letter-spacing: 0.5px;">
-                    <i class="bi bi-person-badge me-1"></i><?= htmlspecialchars(obtenerRolActual() ?? 'Rol') ?>
-                </div>
-            </div>
-        </div>
     </div>
 </aside>

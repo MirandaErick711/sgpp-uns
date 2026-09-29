@@ -1,6 +1,6 @@
 <?php
 /**
- * Vista de Registro de Nuevo Proyecto - SGPP-UNS
+ * Vista de Registro de Nuevo Proyecto - SGPP-UNS (Simplificado y Limpio)
  */
 include __DIR__ . '/../../includes/header.php';
 include __DIR__ . '/../../includes/sidebar.php';
@@ -8,30 +8,26 @@ include __DIR__ . '/../../includes/navbar.php';
 ?>
 
 <div class="row justify-content-center">
-    <div class="col-lg-9 col-xl-8">
+    <div class="col-lg-8">
         
         <div class="d-flex align-items-center justify-content-between mb-3">
             <a href="index.php" class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-arrow-left me-1"></i> Volver al Dashboard
+                <i class="bi bi-arrow-left me-1"></i> Volver al Inicio
             </a>
-            <span class="badge bg-danger-subtle text-danger px-3 py-2 border">
-                <i class="bi bi-shield-check me-1"></i> Validación y Transaccionalidad PDO
-            </span>
+            <span class="text-muted small">EPISI &bull; UNS</span>
         </div>
 
-        <div class="uns-card shadow-sm">
-            <div class="uns-card-header bg-white">
+        <div class="uns-card">
+            <div class="uns-card-header">
                 <h5 class="uns-card-title">
-                    <i class="bi bi-plus-square-fill text-danger"></i> Registro de Proyecto Académico
+                    <i class="bi bi-plus-circle text-danger"></i> Registrar Proyecto Académico
                 </h5>
-                <span class="text-muted small">EPISI &bull; UNS</span>
             </div>
 
             <div class="uns-card-body p-4">
                 <?php if (!empty($error)): ?>
-                    <div class="alert alert-danger d-flex align-items-center gap-2 mb-4" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill fs-5"></i>
-                        <div><?= htmlspecialchars($error) ?></div>
+                    <div class="alert alert-danger py-2 px-3 mb-3 small" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> <?= htmlspecialchars($error) ?>
                     </div>
                 <?php endif; ?>
 
@@ -40,20 +36,19 @@ include __DIR__ . '/../../includes/navbar.php';
 
                     <div class="mb-3">
                         <label for="titulo" class="form-label">
-                            Título del Proyecto o Producto Académico <span class="text-danger">*</span>
+                            Título del Proyecto <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control" id="titulo" name="titulo" 
-                               placeholder="Ej: Sistema Web de Gestión de Tutorías Académicas para la EPISI" 
+                               placeholder="ej: Sistema Web de Gestión de Laboratorios para la EPISI" 
                                required value="<?= htmlspecialchars($_POST['titulo'] ?? '') ?>">
-                        <div class="form-text">Debe ser claro, conciso y representar el alcance del trabajo.</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">
-                            Descripción / Resumen del Proyecto <span class="text-danger">*</span>
+                            Descripción / Alcance <span class="text-danger">*</span>
                         </label>
                         <textarea class="form-control" id="descripcion" name="descripcion" rows="4" 
-                                  placeholder="Detalle los objetivos del proyecto, la problemática que resuelve y las tecnologías planificadas..." 
+                                  placeholder="Detalle los objetivos del proyecto y la problemática que resuelve..." 
                                   required><?= htmlspecialchars($_POST['descripcion'] ?? '') ?></textarea>
                     </div>
 
@@ -87,7 +82,7 @@ include __DIR__ . '/../../includes/navbar.php';
                         </div>
                         <div class="col-md-6">
                             <label for="fecha_fin_prevista" class="form-label">
-                                Fecha Prevista de Finalización <span class="text-danger">*</span>
+                                Fecha Prevista de Término <span class="text-danger">*</span>
                             </label>
                             <input type="date" class="form-control" id="fecha_fin_prevista" name="fecha_fin_prevista" 
                                    required value="<?= htmlspecialchars($_POST['fecha_fin_prevista'] ?? date('Y-m-d', strtotime('+3 months'))) ?>">
@@ -95,9 +90,9 @@ include __DIR__ . '/../../includes/navbar.php';
                     </div>
 
                     <div class="d-flex align-items-center justify-content-end gap-2 pt-3 border-top">
-                        <a href="index.php" class="btn btn-light border px-4">Cancelar</a>
-                        <button type="submit" class="btn btn-uns-primary px-4 shadow-sm">
-                            <i class="bi bi-check-circle-fill me-1"></i> Guardar Proyecto
+                        <a href="index.php" class="btn btn-outline-secondary btn-sm px-3">Cancelar</a>
+                        <button type="submit" class="btn btn-uns-primary btn-sm px-3">
+                            Guardar Proyecto
                         </button>
                     </div>
                 </form>

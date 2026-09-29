@@ -1,110 +1,68 @@
 <?php
 /**
- * Vista del Panel de Monitoreo y Auditoría - SGPP-UNS
+ * Vista del Panel de Monitoreo y Auditoría - SGPP-UNS (Simplificado y Limpio)
  */
 include __DIR__ . '/../../includes/header.php';
 include __DIR__ . '/../../includes/sidebar.php';
 include __DIR__ . '/../../includes/navbar.php';
 ?>
 
-<div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+<div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-4">
     <div>
         <div class="d-flex align-items-center gap-2">
-            <h3 class="fw-bold mb-0 text-dark">
-                <i class="bi bi-activity text-danger me-1"></i> Panel de Monitoreo y Supervisión
-            </h3>
+            <h4 class="fw-bold mb-0 text-dark">Monitoreo del Sistema</h4>
             <span class="health-indicator ok">
                 <span class="pulse-dot"></span> Operativo
             </span>
         </div>
-        <p class="text-muted small mb-0">
-            Supervisión arquitectónica en tiempo real, integridad de base de datos, almacenamiento y trazabilidad de seguridad.
-        </p>
+        <p class="text-muted small mb-0">Supervisión del estado del sistema, integridad de base de datos y trazabilidad de seguridad.</p>
     </div>
-
-    <!-- Botón de actualización -->
-    <div class="d-flex gap-2">
-        <a href="monitoreo.php" class="btn btn-light btn-sm border" title="Actualizar datos">
-            <i class="bi bi-arrow-clockwise"></i> Actualizar
+    <div>
+        <a href="monitoreo.php" class="btn btn-outline-secondary btn-sm" title="Actualizar datos">
+            <i class="bi bi-arrow-clockwise me-1"></i> Actualizar
         </a>
     </div>
 </div>
 
-<!-- Tarjetas de Diagnóstico y Salud del Sistema -->
+<!-- Tarjetas de Diagnóstico del Sistema -->
 <div class="row g-3 mb-4">
-    <!-- Estado Aplicación -->
-    <div class="col-xl-3 col-sm-6">
-        <div class="uns-card p-3 h-100">
-            <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="small text-muted fw-bold text-uppercase">Aplicación Web</span>
-                <i class="bi bi-globe2 text-success fs-4"></i>
+    <div class="col-md-3 col-sm-6">
+        <div class="kpi-card kpi-green">
+            <div class="kpi-info">
+                <h6>Aplicación Web</h6>
+                <p class="kpi-value text-success" style="font-size: 1.35rem;">Operativa</p>
             </div>
-            <div class="d-flex align-items-baseline gap-2">
-                <h4 class="fw-bold text-success mb-0">Operativa</h4>
-                <span class="badge bg-success-subtle text-success border">HTTP 200</span>
-            </div>
-            <div class="small text-muted mt-2">
-                <i class="bi bi-cpu me-1"></i> PHP <?= phpversion() ?> en Apache XAMPP
-            </div>
+            <div class="kpi-icon"><i class="bi bi-globe"></i></div>
         </div>
     </div>
 
-    <!-- Estado Base de Datos -->
-    <div class="col-xl-3 col-sm-6">
-        <div class="uns-card p-3 h-100">
-            <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="small text-muted fw-bold text-uppercase">Base de Datos MySQL</span>
-                <i class="bi bi-database-check text-primary fs-4"></i>
+    <div class="col-md-3 col-sm-6">
+        <div class="kpi-card kpi-blue">
+            <div class="kpi-info">
+                <h6>Base de Datos</h6>
+                <p class="kpi-value text-primary" style="font-size: 1.35rem;"><?= $dbHealth['status'] ?></p>
             </div>
-            <div class="d-flex align-items-baseline gap-2">
-                <h4 class="fw-bold <?= $dbHealth['ok'] ? 'text-primary' : 'text-danger' ?> mb-0">
-                    <?= $dbHealth['status'] ?>
-                </h4>
-                <span class="badge bg-primary-subtle text-primary border">PDO Activo</span>
-            </div>
-            <div class="small text-muted mt-2 text-truncate">
-                <i class="bi bi-hdd-stack me-1"></i> <?= htmlspecialchars($dbHealth['version']) ?>
-            </div>
+            <div class="kpi-icon"><i class="bi bi-database"></i></div>
         </div>
     </div>
 
-    <!-- Almacenamiento Físico de Archivos -->
-    <div class="col-xl-3 col-sm-6">
-        <div class="uns-card p-3 h-100">
-            <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="small text-muted fw-bold text-uppercase">Archivos Almacenados</span>
-                <i class="bi bi-folder-check text-warning fs-4"></i>
+    <div class="col-md-3 col-sm-6">
+        <div class="kpi-card kpi-gold">
+            <div class="kpi-info">
+                <h6>Almacenamiento</h6>
+                <p class="kpi-value" style="font-size: 1.35rem;"><?= $statsArchivos['total_archivos'] ?> docs</p>
             </div>
-            <div class="d-flex align-items-baseline gap-2">
-                <h4 class="fw-bold text-dark mb-0"><?= $statsArchivos['total_archivos'] ?> docs</h4>
-                <span class="badge bg-light text-secondary border"><?= $statsArchivos['espacio_legible'] ?></span>
-            </div>
-            <div class="small text-muted mt-2">
-                <i class="bi bi-folder2 me-1"></i> Desacoplado en <code>uploads/</code>
-            </div>
+            <div class="kpi-icon"><i class="bi bi-folder"></i></div>
         </div>
     </div>
 
-    <!-- Usuarios y Proyectos Activos -->
-    <div class="col-xl-3 col-sm-6">
-        <div class="uns-card p-3 h-100">
-            <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="small text-muted fw-bold text-uppercase">Carga del Ecosistema</span>
-                <i class="bi bi-people-fill text-danger fs-4"></i>
+    <div class="col-md-3 col-sm-6">
+        <div class="kpi-card">
+            <div class="kpi-info">
+                <h6>Ecosistema</h6>
+                <p class="kpi-value" style="font-size: 1.35rem;"><?= $totalProyectos ?> proyectos</p>
             </div>
-            <div class="d-flex align-items-baseline gap-3">
-                <div>
-                    <h5 class="fw-bold text-dark mb-0"><?= $totalUsuarios ?></h5>
-                    <span class="text-muted" style="font-size:0.75rem;">Usuarios</span>
-                </div>
-                <div class="border-start ps-3">
-                    <h5 class="fw-bold text-dark mb-0"><?= $totalProyectos ?></h5>
-                    <span class="text-muted" style="font-size:0.75rem;">Proyectos</span>
-                </div>
-            </div>
-            <div class="small text-muted mt-2">
-                <i class="bi bi-shield-lock me-1"></i> 4 roles configurados
-            </div>
+            <div class="kpi-icon"><i class="bi bi-people"></i></div>
         </div>
     </div>
 </div>
@@ -113,13 +71,13 @@ include __DIR__ . '/../../includes/navbar.php';
 <div class="uns-card">
     <div class="uns-card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
         <h5 class="uns-card-title">
-            <i class="bi bi-journal-text text-danger"></i> Bitácora de Acciones Recientes del Sistema
+            <i class="bi bi-journal-text text-danger"></i> Bitácora de Acciones Recientes
         </h5>
         
         <div class="btn-group btn-group-sm">
             <a href="monitoreo.php" class="btn <?= empty($filtroResultado) ? 'btn-uns-primary' : 'btn-outline-secondary' ?>">Todas</a>
-            <a href="monitoreo.php?resultado=Correcto" class="btn <?= $filtroResultado === 'Correcto' ? 'btn-success' : 'btn-outline-success' ?>">Correctas</a>
-            <a href="monitoreo.php?resultado=Rechazado" class="btn <?= $filtroResultado === 'Rechazado' ? 'btn-danger' : 'btn-outline-danger' ?>">Rechazadas</a>
+            <a href="monitoreo.php?resultado=Correcto" class="btn <?= $filtroResultado === 'Correcto' ? 'btn-success' : 'btn-outline-secondary' ?>">Correctas</a>
+            <a href="monitoreo.php?resultado=Rechazado" class="btn <?= $filtroResultado === 'Rechazado' ? 'btn-danger' : 'btn-outline-secondary' ?>">Rechazadas</a>
         </div>
     </div>
 
@@ -128,42 +86,38 @@ include __DIR__ . '/../../includes/navbar.php';
             <table class="table uns-table mb-0">
                 <thead>
                     <tr>
-                        <th style="width: 160px;">Fecha y Hora</th>
+                        <th style="width: 140px;">Fecha y Hora</th>
                         <th>Usuario</th>
                         <th>Rol</th>
-                        <th>Acción Realizada</th>
+                        <th>Acción</th>
                         <th>Detalle Técnico</th>
-                        <th>IP Origen</th>
-                        <th class="text-center">Resultado</th>
+                        <th>IP</th>
+                        <th class="text-center" style="width: 100px;">Resultado</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (empty($eventosAuditoria)): ?>
-                        <tr><td colspan="7" class="text-center py-4 text-muted">No hay registros de auditoría disponibles con el filtro seleccionado.</td></tr>
+                        <tr><td colspan="7" class="text-center py-4 text-muted small">No hay eventos de auditoría disponibles con el filtro seleccionado.</td></tr>
                     <?php else: ?>
                         <?php foreach ($eventosAuditoria as $ev): ?>
                         <tr class="<?= $ev['resultado'] === 'Rechazado' ? 'table-danger table-opacity-10' : '' ?>">
-                            <td class="small text-nowrap">
-                                <i class="bi bi-clock me-1 text-muted"></i>
-                                <?= date('d/m/Y H:i:s', strtotime($ev['fecha_hora'])) ?>
+                            <td class="small text-nowrap text-muted">
+                                <?= date('d/m/Y H:i', strtotime($ev['fecha_hora'])) ?>
                             </td>
                             <td>
                                 <strong class="small text-dark"><?= htmlspecialchars($ev['nombre_usuario']) ?></strong>
                             </td>
                             <td>
-                                <span class="badge bg-light text-secondary border text-uppercase" style="font-size:0.7rem;">
+                                <span class="badge bg-light text-secondary border" style="font-size:0.7rem;">
                                     <?= htmlspecialchars($ev['rol']) ?>
                                 </span>
                             </td>
                             <td>
-                                <span class="fw-semibold small <?= $ev['resultado'] === 'Rechazado' ? 'text-danger' : 'text-dark' ?>">
-                                    <?php if ($ev['resultado'] === 'Rechazado'): ?>
-                                        <i class="bi bi-shield-x me-1"></i>
-                                    <?php endif; ?>
+                                <span class="small fw-semibold <?= $ev['resultado'] === 'Rechazado' ? 'text-danger' : 'text-dark' ?>">
                                     <?= htmlspecialchars($ev['accion']) ?>
                                 </span>
                             </td>
-                            <td style="max-width: 320px;">
+                            <td style="max-width: 300px;">
                                 <div class="small text-secondary text-truncate" title="<?= htmlspecialchars($ev['detalle'] ?? '') ?>">
                                     <?= htmlspecialchars($ev['detalle'] ?? '-') ?>
                                 </div>
@@ -173,15 +127,15 @@ include __DIR__ . '/../../includes/navbar.php';
                             </td>
                             <td class="text-center">
                                 <?php if ($ev['resultado'] === 'Correcto'): ?>
-                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">
-                                        <i class="bi bi-check-circle-fill me-1"></i> Correcto
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-0.5" style="font-size:0.75rem;">
+                                        Correcto
                                     </span>
                                 <?php elseif ($ev['resultado'] === 'Rechazado'): ?>
-                                    <span class="badge bg-danger text-white px-2 py-1 shadow-sm">
-                                        <i class="bi bi-x-octagon-fill me-1"></i> Rechazado
+                                    <span class="badge bg-danger text-white px-2 py-0.5" style="font-size:0.75rem;">
+                                        Rechazado
                                     </span>
                                 <?php else: ?>
-                                    <span class="badge bg-warning text-dark px-2 py-1">
+                                    <span class="badge bg-warning text-dark px-2 py-0.5" style="font-size:0.75rem;">
                                         <?= htmlspecialchars($ev['resultado']) ?>
                                     </span>
                                 <?php endif; ?>

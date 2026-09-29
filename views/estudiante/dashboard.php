@@ -1,6 +1,6 @@
 <?php
 /**
- * Dashboard del Estudiante - SGPP-UNS
+ * Dashboard del Estudiante - SGPP-UNS (Simplificado y Limpio)
  */
 require_once __DIR__ . '/../../includes/session.php';
 requerirRol('estudiante');
@@ -18,95 +18,80 @@ include __DIR__ . '/../../includes/sidebar.php';
 include __DIR__ . '/../../includes/navbar.php';
 ?>
 
-<!-- Banner de Bienvenida Institucional -->
-<div class="card border-0 mb-4 text-white shadow-sm" 
-     style="background: linear-gradient(135deg, var(--uns-red-dark) 0%, var(--uns-red) 70%, var(--uns-gold-dark) 100%); border-radius: 12px;">
-    <div class="card-body p-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-        <div>
-            <span class="badge bg-white text-danger fw-bold text-uppercase px-2 py-1 mb-2" style="font-size: 0.7rem; letter-spacing: 1px;">
-                <i class="bi bi-mortarboard-fill me-1"></i> Pregrado EPISI &bull; Cód: <?= htmlspecialchars($_SESSION['usuario_codigo'] ?? 'S/C') ?>
-            </span>
-            <h3 class="fw-bold mb-1">¡Bienvenido(a), <?= htmlspecialchars($_SESSION['usuario_nombres'] ?? 'Estudiante') ?>!</h3>
-            <p class="mb-0 opacity-75 small">
-                Sistema de Gestión de Proyectos y Productos Académicos (SGPP-UNS). Administre sus entregables, cargue documentos y consulte observaciones docentes.
-            </p>
-        </div>
-        <div class="d-flex flex-shrink-0 gap-2">
-            <a href="nuevo_proyecto.php" class="btn btn-uns-gold px-3 py-2 text-nowrap shadow-sm">
-                <i class="bi bi-plus-circle-fill me-1"></i> Nuevo Proyecto
-            </a>
-        </div>
+<!-- Encabezado de Página -->
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-4">
+    <div>
+        <h4 class="fw-bold mb-1 text-dark">Bienvenido(a), <?= htmlspecialchars($_SESSION['usuario_nombres'] ?? 'Estudiante') ?></h4>
+        <p class="text-muted small mb-0">Gestión de proyectos académicos y entregables &bull; Semestre 2026-II</p>
+    </div>
+    <div>
+        <a href="nuevo_proyecto.php" class="btn btn-uns-primary btn-sm">
+            <i class="bi bi-plus-lg me-1"></i> Nuevo Proyecto
+        </a>
     </div>
 </div>
 
-<!-- Tarjetas de Métricas Estadísticas (KPIs) -->
+<!-- Tarjetas KPI Resumen -->
 <div class="row g-3 mb-4">
-    <div class="col-xl-3 col-sm-6">
+    <div class="col-md-3 col-sm-6">
         <div class="kpi-card">
             <div class="kpi-info">
-                <h6>Proyectos Registrados</h6>
+                <h6>Proyectos</h6>
                 <p class="kpi-value"><?= (int)($stats['total_proyectos'] ?? 0) ?></p>
             </div>
-            <div class="kpi-icon">
-                <i class="bi bi-folder2-open"></i>
-            </div>
+            <div class="kpi-icon"><i class="bi bi-folder"></i></div>
         </div>
     </div>
 
-    <div class="col-xl-3 col-sm-6">
+    <div class="col-md-3 col-sm-6">
         <div class="kpi-card kpi-blue">
             <div class="kpi-info">
                 <h6>En Revisión</h6>
                 <p class="kpi-value"><?= (int)($stats['en_revision'] ?? 0) ?></p>
             </div>
-            <div class="kpi-icon">
-                <i class="bi bi-arrow-repeat"></i>
-            </div>
+            <div class="kpi-icon"><i class="bi bi-hourglass-split"></i></div>
         </div>
     </div>
 
-    <div class="col-xl-3 col-sm-6">
+    <div class="col-md-3 col-sm-6">
         <div class="kpi-card kpi-green">
             <div class="kpi-info">
-                <h6>Proyectos Aprobados</h6>
+                <h6>Aprobados</h6>
                 <p class="kpi-value"><?= (int)($stats['aprobados'] ?? 0) ?></p>
             </div>
-            <div class="kpi-icon">
-                <i class="bi bi-patch-check-fill"></i>
-            </div>
+            <div class="kpi-icon"><i class="bi bi-check-circle"></i></div>
         </div>
     </div>
 
-    <div class="col-xl-3 col-sm-6">
+    <div class="col-md-3 col-sm-6">
         <div class="kpi-card kpi-orange">
             <div class="kpi-info">
-                <h6>Observaciones Recibidas</h6>
+                <h6>Observaciones</h6>
                 <p class="kpi-value"><?= (int)($stats['observaciones_pendientes'] ?? 0) ?></p>
             </div>
-            <div class="kpi-icon">
-                <i class="bi bi-chat-left-dots"></i>
-            </div>
+            <div class="kpi-icon"><i class="bi bi-chat-text"></i></div>
         </div>
     </div>
 </div>
 
-<!-- Tabla de Proyectos del Estudiante -->
+<!-- Tabla de Proyectos Recientes -->
 <div class="uns-card">
     <div class="uns-card-header">
         <h5 class="uns-card-title">
-            <i class="bi bi-journal-bookmark-fill text-danger"></i> Mis Proyectos Académicos
+            <i class="bi bi-journal-text text-danger"></i> Mis Proyectos
         </h5>
-        <a href="nuevo_proyecto.php" class="btn btn-sm btn-uns-primary">
-            <i class="bi bi-plus-lg me-1"></i> Registrar Proyecto
+        <a href="proyectos.php" class="btn btn-sm btn-link text-decoration-none text-secondary p-0">
+            Ver catálogo completo <i class="bi bi-arrow-right"></i>
         </a>
     </div>
+
     <div class="uns-card-body p-0">
         <?php if (empty($misProyectos)): ?>
-            <div class="text-center py-5 text-muted">
-                <i class="bi bi-folder-x fs-1 d-block mb-2 text-secondary opacity-50"></i>
-                <p class="mb-2">Aún no tiene proyectos registrados en el SGPP-UNS.</p>
-                <a href="nuevo_proyecto.php" class="btn btn-uns-gold btn-sm">
-                    <i class="bi bi-plus-circle me-1"></i> Iniciar mi primer proyecto
+            <div class="text-center py-4 text-muted small">
+                <i class="bi bi-folder-x fs-2 d-block mb-1 opacity-50"></i>
+                <p class="mb-2">Aún no tiene proyectos registrados.</p>
+                <a href="nuevo_proyecto.php" class="btn btn-uns-primary btn-sm">
+                    <i class="bi bi-plus-lg me-1"></i> Registrar mi primer proyecto
                 </a>
             </div>
         <?php else: ?>
@@ -114,49 +99,27 @@ include __DIR__ . '/../../includes/navbar.php';
                 <table class="table uns-table mb-0">
                     <thead>
                         <tr>
-                            <th>Código</th>
+                            <th style="width: 120px;">Código</th>
                             <th>Proyecto</th>
-                            <th>Línea de Investigación</th>
-                            <th>Fechas</th>
-                            <th>Entregables</th>
+                            <th>Línea de Inv.</th>
+                            <th class="text-center">Entregables</th>
                             <th>Estado</th>
-                            <th class="text-end">Acciones</th>
+                            <th class="text-end" style="width: 90px;">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($misProyectos as $p): ?>
                         <tr>
+                            <td class="font-monospace fw-semibold"><?= htmlspecialchars($p['codigo_proyecto']) ?></td>
                             <td>
-                                <span class="badge bg-light text-dark border fw-bold">
-                                    <?= htmlspecialchars($p['codigo_proyecto']) ?>
-                                </span>
+                                <strong class="text-dark d-block"><?= htmlspecialchars($p['titulo']) ?></strong>
                             </td>
-                            <td>
-                                <strong class="d-block text-dark"><?= htmlspecialchars($p['titulo']) ?></strong>
-                                <small class="text-muted text-truncate d-inline-block" style="max-width: 320px;">
-                                    <?= htmlspecialchars($p['descripcion']) ?>
-                                </small>
-                            </td>
-                            <td>
-                                <span class="small text-secondary"><?= htmlspecialchars($p['linea_investigacion']) ?></span>
-                            </td>
-                            <td>
-                                <div class="small">
-                                    <div><i class="bi bi-calendar-event me-1 text-muted"></i> <?= date('d/m/Y', strtotime($p['fecha_inicio'])) ?></div>
-                                    <div class="text-muted"><i class="bi bi-calendar-check me-1"></i> <?= date('d/m/Y', strtotime($p['fecha_fin_prevista'])) ?></div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="badge bg-secondary-subtle text-secondary px-2 py-1">
-                                    <i class="bi bi-files me-1"></i> <?= (int)$p['total_entregables'] ?> entregable(s)
-                                </span>
-                            </td>
-                            <td>
-                                <?= badgeEstado($p['estado']) ?>
-                            </td>
+                            <td class="text-muted small"><?= htmlspecialchars($p['linea_investigacion']) ?></td>
+                            <td class="text-center small"><?= (int)$p['total_entregables'] ?></td>
+                            <td><?= badgeEstado($p['estado']) ?></td>
                             <td class="text-end">
-                                <a href="proyecto.php?id=<?= (int)$p['id'] ?>" class="btn btn-sm btn-uns-outline">
-                                    <i class="bi bi-eye-fill me-1"></i> Ver Proyecto
+                                <a href="proyecto.php?id=<?= (int)$p['id'] ?>" class="btn btn-sm btn-outline-secondary py-1 px-2">
+                                    Ver
                                 </a>
                             </td>
                         </tr>

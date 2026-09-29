@@ -1,13 +1,9 @@
     </div><!-- /.content-body -->
 
-    <footer class="py-3 px-4 bg-white border-top text-center text-muted small mt-auto">
-        <div class="container-fluid d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
-            <div>
-                <strong>SGPP-UNS</strong> &bull; Sistema de Gestión de Proyectos y Productos Académicos
-            </div>
-            <div>
-                Universidad Nacional del Santa &copy; 2026 &bull; Escuela Profesional de Ingeniería de Sistemas e Informática
-            </div>
+    <footer class="py-2.5 px-4 bg-white border-top text-center text-muted small mt-auto" style="font-size: 0.8rem;">
+        <div class="container-fluid d-flex flex-column flex-sm-row justify-content-between align-items-center gap-1">
+            <span><strong>SGPP-UNS</strong> &bull; Sistema de Gestión de Proyectos y Productos Académicos</span>
+            <span>Universidad Nacional del Santa &copy; 2026 &bull; EPISI</span>
         </div>
     </footer>
 </main><!-- /.app-main -->

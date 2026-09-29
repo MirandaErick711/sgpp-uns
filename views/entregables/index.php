@@ -1,38 +1,34 @@
 <?php
 /**
- * Vista de Bandeja General de Entregables - SGPP-UNS
+ * Vista de Bandeja General de Entregables - SGPP-UNS (Simplificado y Limpio)
  */
 include __DIR__ . '/../../includes/header.php';
 include __DIR__ . '/../../includes/sidebar.php';
 include __DIR__ . '/../../includes/navbar.php';
 ?>
 
-<div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+<div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-4">
     <div>
-        <h3 class="fw-bold mb-1 text-dark">
-            <i class="bi bi-inbox-fill text-danger me-2"></i>Bandeja de Entregables Académicos
-        </h3>
-        <p class="text-muted small mb-0">
-            Revisión, calificación y registro de observaciones de los productos entregados por los estudiantes.
-        </p>
+        <h4 class="fw-bold mb-1 text-dark">Bandeja de Entregables</h4>
+        <p class="text-muted small mb-0">Revisión y seguimiento de productos académicos entregados por los estudiantes.</p>
     </div>
 </div>
 
-<!-- Filtros de Estado -->
-<div class="card border-0 shadow-sm mb-4">
+<!-- Filtros de Estado Sencillos -->
+<div class="card border-0 shadow-sm mb-3">
     <div class="card-body p-3 bg-white">
         <form method="GET" action="entregables.php" class="row g-2 align-items-center">
             <div class="col-auto">
-                <span class="small fw-bold text-secondary me-2"><i class="bi bi-funnel-fill text-danger"></i> Filtrar por estado:</span>
+                <span class="small text-muted me-1">Filtrar por estado:</span>
             </div>
             <div class="col-auto">
-                <div class="btn-group btn-group-sm" role="group">
+                <div class="btn-group btn-group-sm">
                     <a href="entregables.php" class="btn <?= empty($filtroEstado) ? 'btn-uns-primary' : 'btn-outline-secondary' ?>">Todos</a>
-                    <a href="entregables.php?estado=En revisión" class="btn <?= $filtroEstado === 'En revisión' ? 'btn-primary' : 'btn-outline-primary' ?>">En revisión</a>
-                    <a href="entregables.php?estado=Pendiente" class="btn <?= $filtroEstado === 'Pendiente' ? 'btn-warning text-dark' : 'btn-outline-warning' ?>">Pendiente</a>
-                    <a href="entregables.php?estado=Observado" class="btn <?= $filtroEstado === 'Observado' ? 'btn-warning' : 'btn-outline-warning' ?>" style="background-color: <?= $filtroEstado === 'Observado' ? '#fd7e14' : 'transparent' ?>; color: <?= $filtroEstado === 'Observado' ? '#fff' : '#fd7e14' ?>; border-color: #fd7e14;">Observado</a>
-                    <a href="entregables.php?estado=Aprobado" class="btn <?= $filtroEstado === 'Aprobado' ? 'btn-success' : 'btn-outline-success' ?>">Aprobado</a>
-                    <a href="entregables.php?estado=Rechazado" class="btn <?= $filtroEstado === 'Rechazado' ? 'btn-danger' : 'btn-outline-danger' ?>">Rechazado</a>
+                    <a href="entregables.php?estado=En revisión" class="btn <?= $filtroEstado === 'En revisión' ? 'btn-primary' : 'btn-outline-secondary' ?>">En revisión</a>
+                    <a href="entregables.php?estado=Pendiente" class="btn <?= $filtroEstado === 'Pendiente' ? 'btn-secondary' : 'btn-outline-secondary' ?>">Pendiente</a>
+                    <a href="entregables.php?estado=Observado" class="btn <?= $filtroEstado === 'Observado' ? 'btn-warning' : 'btn-outline-secondary' ?>">Observado</a>
+                    <a href="entregables.php?estado=Aprobado" class="btn <?= $filtroEstado === 'Aprobado' ? 'btn-success' : 'btn-outline-secondary' ?>">Aprobado</a>
+                    <a href="entregables.php?estado=Rechazado" class="btn <?= $filtroEstado === 'Rechazado' ? 'btn-danger' : 'btn-outline-secondary' ?>">Rechazado</a>
                 </div>
             </div>
         </form>
@@ -42,15 +38,16 @@ include __DIR__ . '/../../includes/navbar.php';
 <div class="uns-card">
     <div class="uns-card-header">
         <h5 class="uns-card-title">
-            <i class="bi bi-collection-fill text-danger"></i> Listado de Entregables (<?= count($entregables) ?> registros)
+            <i class="bi bi-clipboard-check text-danger"></i> Entregables Registrados
         </h5>
+        <span class="badge bg-light text-secondary border"><?= count($entregables) ?> registro(s)</span>
     </div>
 
     <div class="uns-card-body p-0">
         <?php if (empty($entregables)): ?>
-            <div class="text-center py-5 text-muted">
-                <i class="bi bi-inbox fs-1 d-block mb-2 text-secondary opacity-50"></i>
-                <p class="mb-0">No se encontraron entregables con el criterio seleccionado.</p>
+            <div class="text-center py-4 text-muted small">
+                <i class="bi bi-inbox fs-2 d-block mb-1 opacity-50"></i>
+                <p class="mb-0">No se encontraron entregables con el filtro seleccionado.</p>
             </div>
         <?php else: ?>
             <div class="table-responsive">
@@ -60,10 +57,10 @@ include __DIR__ . '/../../includes/navbar.php';
                             <th>Proyecto</th>
                             <th>Estudiante</th>
                             <th>Entregable</th>
-                            <th>Archivos</th>
+                            <th class="text-center">Archivos</th>
                             <th>Fecha</th>
                             <th>Estado</th>
-                            <th class="text-end">Acciones</th>
+                            <th class="text-end" style="width: 140px;">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,12 +68,12 @@ include __DIR__ . '/../../includes/navbar.php';
                         <tr>
                             <td>
                                 <strong class="small d-block text-dark"><?= htmlspecialchars($e['codigo_proyecto']) ?></strong>
-                                <span class="small text-muted text-truncate d-inline-block" style="max-width: 220px;">
+                                <span class="small text-muted text-truncate d-inline-block" style="max-width: 200px;">
                                     <?= htmlspecialchars($e['proyecto_titulo']) ?>
                                 </span>
                             </td>
                             <td>
-                                <div class="fw-semibold small text-dark">
+                                <div class="small fw-semibold text-dark">
                                     <?= htmlspecialchars($e['estudiante_apellidos'] . ', ' . $e['estudiante_nombres']) ?>
                                 </div>
                                 <small class="text-muted">Cód: <?= htmlspecialchars($e['codigo_universitario'] ?? '-') ?></small>
@@ -87,28 +84,28 @@ include __DIR__ . '/../../includes/navbar.php';
                                     <?= htmlspecialchars($e['titulo']) ?>
                                 </span>
                             </td>
-                            <td>
+                            <td class="text-center small">
                                 <?php if ((int)$e['total_archivos'] > 0): ?>
-                                    <span class="badge bg-light text-danger border">
-                                        <i class="bi bi-file-earmark-check-fill me-1"></i> <?= (int)$e['total_archivos'] ?> doc(s)
+                                    <span class="badge bg-light text-dark border">
+                                        <?= (int)$e['total_archivos'] ?> doc(s)
                                     </span>
                                 <?php else: ?>
-                                    <span class="badge bg-light text-muted border">Sin archivos</span>
+                                    <span class="text-muted">-</span>
                                 <?php endif; ?>
                             </td>
                             <td class="small text-muted text-nowrap">
-                                <i class="bi bi-calendar3 me-1"></i> <?= date('d/m/Y H:i', strtotime($e['fecha_entrega'])) ?>
+                                <?= date('d/m/Y', strtotime($e['fecha_entrega'])) ?>
                             </td>
                             <td>
                                 <?= badgeEstado($e['estado']) ?>
                             </td>
                             <td class="text-end text-nowrap">
-                                <a href="proyecto.php?id=<?= (int)$e['proyecto_id'] ?>" class="btn btn-sm btn-outline-secondary me-1" title="Ver proyecto completo">
-                                    <i class="bi bi-eye"></i> Ver
+                                <a href="proyecto.php?id=<?= (int)$e['proyecto_id'] ?>" class="btn btn-sm btn-outline-secondary py-1 px-2" title="Ver proyecto">
+                                    Ver
                                 </a>
                                 <?php if (esRol('docente')): ?>
-                                    <a href="revisar.php?id=<?= (int)$e['id'] ?>" class="btn btn-sm btn-uns-primary">
-                                        <i class="bi bi-pencil-square me-1"></i> Revisar
+                                    <a href="revisar.php?id=<?= (int)$e['id'] ?>" class="btn btn-sm btn-uns-primary py-1 px-2">
+                                        Revisar
                                     </a>
                                 <?php endif; ?>
                             </td>

@@ -1,25 +1,27 @@
 /**
  * SGPP-UNS - Hoja de Estilos Institucional
  * Universidad Nacional del Santa - Nuevo Chimbote
- * Paleta: Burdeos UNS (#8B1527), Dorado (#C59B27), Blanco, Grises Neutros
+ * Estilo visual: Limpio, Moderno, Minimalista e Institucional UNS
+ * Paleta: Burdeos UNS (#8B1527), Dorado sutil (#C59B27), Superficie Blanca (#FFFFFF), Neutral (#F8F9FA, #E2E8F0, #1F2937)
  */
 
 :root {
   --uns-red: #8B1527;
-  --uns-red-dark: #5C0B18;
-  --uns-red-light: #A52237;
+  --uns-red-dark: #6E0F1E;
+  --uns-red-light: #A7263B;
   --uns-gold: #C59B27;
   --uns-gold-light: #DFC05E;
-  --uns-gold-dark: #997415;
-  --uns-bg: #F4F6F9;
+  --uns-gold-dark: #9E7A1C;
+  --uns-bg: #F8F9FA;
   --uns-surface: #FFFFFF;
-  --uns-text: #2D3748;
-  --uns-text-muted: #718096;
-  --uns-border: #E2E8F0;
-  --uns-sidebar-width: 260px;
+  --uns-text: #1F2937;
+  --uns-text-muted: #6B7280;
+  --uns-border: #E5E7EB;
+  --uns-border-light: #F3F4F6;
+  --uns-sidebar-width: 240px;
 }
 
-/* Reset y dimensiones base */
+/* Reset y base */
 *,
 *::before,
 *::after {
@@ -34,18 +36,15 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: var(--uns-bg);
   color: var(--uns-text);
-}
-
-body {
-  display: flex;
-  flex-direction: column;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 /* ====================================================================
-   NAVBAR & SIDEBAR LAYOUT
+   LAYOUT GRID PRINCIPAL (Sidebar fijo a la izquierda, Navbar + Main)
    ==================================================================== */
 
 .app-wrapper {
@@ -58,29 +57,32 @@ body {
   min-height: 100vh;
   width: 100%;
   max-width: 100%;
-  min-width: 0;
 }
+
+/* ====================================================================
+   SIDEBAR (Limpio, Institucional, Estructurado)
+   ==================================================================== */
 
 .app-sidebar {
   grid-area: sidebar;
   width: var(--uns-sidebar-width);
   max-width: var(--uns-sidebar-width);
-  background: linear-gradient(180deg, var(--uns-red-dark) 0%, var(--uns-red) 100%);
+  background-color: var(--uns-red);
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.08);
-  transition: left 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, left 0.25s ease;
   z-index: 1000;
 }
 
 .sidebar-brand {
-  padding: 1.25rem 1.25rem;
+  padding: 1.15rem 1.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   color: #FFFFFF;
 }
@@ -90,120 +92,94 @@ body {
 }
 
 .sidebar-brand img {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
   background: #FFFFFF;
-  border-radius: 50%;
+  border-radius: 6px;
   padding: 2px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-}
-
-.sidebar-brand .brand-text {
-  line-height: 1.2;
 }
 
 .sidebar-brand .brand-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   color: #FFFFFF;
   margin: 0;
+  line-height: 1.2;
 }
 
 .sidebar-brand .brand-sub {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--uns-gold-light);
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
+  display: block;
+  letter-spacing: 0.4px;
 }
 
 .sidebar-nav {
-  padding: 1rem 0;
+  padding: 0.85rem 0;
   flex: 1;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav-section-title {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: rgba(255, 255, 255, 0.5);
-  padding: 0.75rem 1.5rem 0.25rem;
-  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 0.6rem 1.25rem 0.25rem;
+  font-weight: 700;
 }
 
 .sidebar-link {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 0.75rem 1.5rem;
+  gap: 10px;
+  padding: 0.65rem 1.25rem;
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  transition: all 0.2s ease;
-  border-left: 4px solid transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  border-left: 3px solid transparent;
 }
 
 .sidebar-link i {
-  font-size: 1.2rem;
-  width: 24px;
+  font-size: 1.05rem;
+  width: 20px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.75);
+  opacity: 0.85;
 }
 
 .sidebar-link:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.1);
   color: #FFFFFF;
-  border-left-color: var(--uns-gold);
-}
-
-.sidebar-link:hover i {
-  color: var(--uns-gold-light);
+  border-left-color: var(--uns-gold-light);
 }
 
 .sidebar-link.active {
-  background-color: rgba(0, 0, 0, 0.22);
+  background-color: rgba(0, 0, 0, 0.18);
   color: #FFFFFF;
   font-weight: 600;
-  border-left-color: var(--uns-gold);
+  border-left-color: var(--uns-gold-light);
 }
 
 .sidebar-link.active i {
-  color: var(--uns-gold);
+  opacity: 1;
+  color: var(--uns-gold-light);
 }
 
-.sidebar-footer {
-  padding: 1rem 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.15);
-  font-size: 0.82rem;
-}
-
-.sidebar-footer .user-chip {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.user-avatar-circle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--uns-gold);
-  color: var(--uns-red-dark);
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.95rem;
-  border: 2px solid #FFFFFF;
+.sidebar-divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.12);
+  margin: 0.75rem 1.25rem;
 }
 
 /* ====================================================================
-   MAIN CONTENT AREA
+   TOP NAVBAR (Limpio, Blanco, Sobrio)
    ==================================================================== */
 
 .top-navbar {
@@ -211,33 +187,26 @@ body {
   width: 100%;
   max-width: 100%;
   min-width: 0;
-  height: 64px;
+  height: 58px;
   background-color: var(--uns-surface);
   border-bottom: 1px solid var(--uns-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.75rem;
+  padding: 0 1.5rem;
   position: sticky;
   top: 0;
   z-index: 900;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-}
-
-.top-navbar > div {
-  min-width: 0;
 }
 
 .top-navbar-title {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin: 0;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--uns-red-dark);
-  min-width: 0;
-  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--uns-text);
 }
 
 .app-main {
@@ -257,39 +226,57 @@ body {
   width: 100%;
   max-width: 100%;
   min-width: 0;
-  padding: 1.75rem;
-  box-sizing: border-box;
+  padding: 1.5rem;
 }
 
 /* ====================================================================
-   CARD COMPONENTS & STATS
+   PÁGINAS Y ENCABEZADOS SIMPLIFICADOS
+   ==================================================================== */
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--uns-text);
+  margin: 0 0 0.2rem 0;
+}
+
+.page-header-sub {
+  color: var(--uns-text-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* ====================================================================
+   TARJETAS Y KPIS (Minimalistas, Limpias, Organizadas)
    ==================================================================== */
 
 .uns-card {
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
   background: var(--uns-surface);
   border: 1px solid var(--uns-border);
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  margin-bottom: 1.5rem;
   overflow: hidden;
 }
 
 .uns-card-header {
-  padding: 1rem 1.25rem;
+  padding: 0.85rem 1.25rem;
   border-bottom: 1px solid var(--uns-border);
-  background: #FFFFFF;
+  background: var(--uns-surface);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .uns-card-title {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: var(--uns-red-dark);
+  color: var(--uns-text);
   margin: 0;
   display: flex;
   align-items: center;
@@ -300,24 +287,17 @@ body {
   padding: 1.25rem;
 }
 
-/* Tarjetas de Estadísticas (KPI) */
-
+/* Tarjetas KPI compactas y elegantes */
 .kpi-card {
-  position: relative;
   background: #FFFFFF;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--uns-border);
-  padding: 1.25rem 1.4rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  overflow: hidden;
-  border-left: 5px solid var(--uns-red);
-}
-
-.kpi-card.kpi-gold {
-  border-left-color: var(--uns-gold);
+  border-left: 4px solid var(--uns-red);
 }
 
 .kpi-card.kpi-blue {
@@ -329,7 +309,11 @@ body {
 }
 
 .kpi-card.kpi-orange {
-  border-left-color: #fd7e14;
+  border-left-color: #d97706;
+}
+
+.kpi-card.kpi-gold {
+  border-left-color: var(--uns-gold);
 }
 
 .kpi-card.kpi-danger {
@@ -337,108 +321,102 @@ body {
 }
 
 .kpi-info h6 {
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.4px;
   color: var(--uns-text-muted);
   font-weight: 600;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .kpi-info .kpi-value {
-  font-size: 1.85rem;
-  font-weight: 800;
+  font-size: 1.65rem;
+  font-weight: 700;
   color: var(--uns-text);
-  line-height: 1;
+  line-height: 1.1;
   margin: 0;
 }
 
 .kpi-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
-  background: rgba(139, 21, 39, 0.08);
-  color: var(--uns-red);
-}
-
-.kpi-card.kpi-gold .kpi-icon {
-  background: rgba(197, 155, 39, 0.12);
-  color: var(--uns-gold-dark);
+  font-size: 1.25rem;
+  background-color: #F8F9FA;
+  color: var(--uns-text-muted);
 }
 
 .kpi-card.kpi-blue .kpi-icon {
-  background: rgba(13, 110, 253, 0.1);
   color: #0d6efd;
+  background-color: #EFF6FF;
 }
 
 .kpi-card.kpi-green .kpi-icon {
-  background: rgba(25, 135, 84, 0.1);
   color: #198754;
+  background-color: #ECFDF5;
 }
 
 .kpi-card.kpi-orange .kpi-icon {
-  background: rgba(253, 126, 20, 0.12);
-  color: #fd7e14;
+  color: #d97706;
+  background-color: #FFFBEB;
 }
 
 /* ====================================================================
-   ESTADOS Y BADGES INSTITUCIONALES
+   ESTADOS Y BADGES (Semántica Limpia)
    ==================================================================== */
 
 .badge-estado {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  padding: 0.4em 0.75em;
-  border-radius: 6px;
+  padding: 0.3em 0.65em;
+  border-radius: 4px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  border: 1px solid transparent;
+  gap: 4px;
 }
 
 .badge-estado.pendiente {
-  background-color: #FFF9DB;
-  color: #8F6B00;
-  border-color: #FEEA9A;
+  background-color: #F3F4F6;
+  color: #4B5563;
+  border: 1px solid #E5E7EB;
 }
 
 .badge-estado.en-revision {
-  background-color: #E7F1FF;
-  color: #0A58CA;
-  border-color: #B6D4FE;
+  background-color: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #DBEAFE;
 }
 
 .badge-estado.observado {
-  background-color: #FFF0E6;
-  color: #B34100;
-  border-color: #FFC9A3;
+  background-color: #FFFBEB;
+  color: #B45309;
+  border: 1px solid #FDE68A;
 }
 
 .badge-estado.aprobado {
-  background-color: #D1E7DD;
-  color: #0F5132;
-  border-color: #A3CFBB;
+  background-color: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
 }
 
 .badge-estado.rechazado {
-  background-color: #F8D7DA;
-  color: #842029;
-  border-color: #F5C2C7;
+  background-color: #FEF2F2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
 }
 
 /* ====================================================================
-   BOTONES INSTITUCIONALES UNS
+   BOTONES INSTITUCIONALES (Consistentes, Sobrios)
    ==================================================================== */
 
 .btn-uns-primary {
   background-color: var(--uns-red);
   border-color: var(--uns-red);
   color: #FFFFFF;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .btn-uns-primary:hover,
@@ -452,7 +430,7 @@ body {
   background-color: var(--uns-gold);
   border-color: var(--uns-gold);
   color: #1A1A1A;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .btn-uns-gold:hover,
@@ -466,7 +444,7 @@ body {
   border-color: var(--uns-red);
   color: var(--uns-red);
   background-color: transparent;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .btn-uns-outline:hover {
@@ -475,7 +453,7 @@ body {
 }
 
 /* ====================================================================
-   TABLAS Y FORMULARIOS
+   TABLAS (Limpias, Sin Excesos de Bordes)
    ==================================================================== */
 
 .table-responsive {
@@ -488,122 +466,63 @@ body {
 
 .uns-table {
   width: 100%;
-  min-width: 900px;
+  margin-bottom: 0;
 }
 
 .uns-table thead th {
-  background-color: #F8FAFC;
-  color: var(--uns-text);
-  font-weight: 700;
-  font-size: 0.82rem;
+  background-color: #F9FAFB;
+  color: var(--uns-text-muted);
+  font-weight: 600;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-bottom: 2px solid var(--uns-border);
-  padding: 0.85rem 1rem;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--uns-border);
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
 }
 
 .uns-table tbody td {
-  padding: 0.95rem 1rem;
+  padding: 0.75rem 1rem;
   vertical-align: middle;
-  border-bottom: 1px solid var(--uns-border);
-  font-size: 0.9rem;
+  border-bottom: 1px solid var(--uns-border-light);
+  font-size: 0.88rem;
 }
 
 .uns-table tbody tr:hover {
-  background-color: rgba(139, 21, 39, 0.02);
+  background-color: #F9FAFB;
 }
 
+/* ====================================================================
+   FORMULARIOS
+   ==================================================================== */
+
 .form-label {
-  font-weight: 600;
-  font-size: 0.88rem;
+  font-weight: 500;
+  font-size: 0.85rem;
   color: var(--uns-text);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-control,
+.form-select {
+  border-color: var(--uns-border);
+  font-size: 0.88rem;
+  border-radius: 6px;
 }
 
 .form-control:focus,
 .form-select:focus {
-  border-color: var(--uns-red-light);
-  box-shadow: 0 0 0 0.25rem rgba(139, 21, 39, 0.18);
+  border-color: var(--uns-red);
+  box-shadow: 0 0 0 0.2rem rgba(139, 21, 39, 0.15);
 }
 
 /* ====================================================================
-   BANNER DE SEGURIDAD / DR-01
-   ==================================================================== */
-
-.dr01-alert-box {
-  background-color: #FFF5F5;
-  border-left: 6px solid #E53E3E;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 6px rgba(229, 62, 62, 0.08);
-}
-
-.dr01-badge {
-  background-color: #E53E3E;
-  color: #FFFFFF;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.25rem 0.6rem;
-  border-radius: 4px;
-  letter-spacing: 0.5px;
-}
-
-/* ====================================================================
-   MONITOREO INDICADORES
-   ==================================================================== */
-
-.health-indicator {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  font-size: 0.88rem;
-  padding: 0.35rem 0.8rem;
-  border-radius: 20px;
-}
-
-.health-indicator.ok {
-  background-color: #E6F4EA;
-  color: #137333;
-}
-
-.pulse-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: #137333;
-  box-shadow: 0 0 0 0 rgba(19, 115, 51, 0.7);
-  animation: pulseGreen 1.8s infinite;
-}
-
-@keyframes pulseGreen {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(19, 115, 51, 0.7);
-  }
-
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 7px rgba(19, 115, 51, 0);
-  }
-
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(19, 115, 51, 0);
-  }
-}
-
-/* ====================================================================
-   LOGIN SCREEN
+   LOGIN SCREEN (Institucional, Sobrio y Centrado)
    ==================================================================== */
 
 .login-page-body {
   min-height: 100vh;
-  background-color: var(--uns-red-dark);
-  background-image: url('../img/login_bg.svg');
-  background-size: cover;
-  background-position: center;
+  background-color: #F3F4F6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -612,50 +531,41 @@ body {
 
 .login-card-container {
   width: 100%;
-  max-width: 440px;
+  max-width: 400px;
   background: #FFFFFF;
-  border-radius: 14px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  border-top: 5px solid var(--uns-gold);
+  border-top: 4px solid var(--uns-red);
 }
 
 .login-header {
   text-align: center;
-  padding: 2.2rem 2rem 1.2rem;
-  background: #FFFFFF;
+  padding: 2rem 2rem 1rem;
 }
 
 .login-header img {
-  width: 90px;
-  height: 90px;
-  margin-bottom: 1rem;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 0.75rem;
+  object-fit: contain;
 }
 
 .login-header h4 {
-  font-weight: 800;
-  color: var(--uns-red-dark);
-  margin-bottom: 0.25rem;
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: var(--uns-red);
+  margin-bottom: 0.2rem;
+  font-size: 1.25rem;
 }
 
 .login-header p {
   color: var(--uns-text-muted);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   margin: 0;
 }
 
 .login-body {
-  padding: 1.5rem 2rem 2.2rem;
-}
-
-.credential-quick-selector {
-  background-color: #F8FAFC;
-  border: 1px dashed #CBD5E1;
-  border-radius: 8px;
-  padding: 0.85rem;
-  margin-top: 1.25rem;
-  font-size: 0.78rem;
+  padding: 1rem 2rem 2rem;
 }
 
 /* ====================================================================
@@ -667,15 +577,15 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: 0;
   }
 
   .app-sidebar {
     position: fixed;
     top: 0;
-    left: -260px;
+    left: -240px;
     height: 100vh;
     z-index: 1050;
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
   }
 
   .app-sidebar.show {
@@ -683,16 +593,7 @@ body {
   }
 
   .top-navbar {
-    width: 100%;
-    min-width: 0;
     padding: 0 1rem;
-  }
-
-  .app-main {
-    margin-left: 0;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
   }
 
   .content-body {

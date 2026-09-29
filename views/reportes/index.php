@@ -1,32 +1,30 @@
 <?php
 /**
- * Vista de Reportes de Avance Académico - SGPP-UNS
+ * Vista de Reportes de Avance Académico - SGPP-UNS (Simplificado y Limpio)
  */
 include __DIR__ . '/../../includes/header.php';
 include __DIR__ . '/../../includes/sidebar.php';
 include __DIR__ . '/../../includes/navbar.php';
 ?>
 
-<div class="d-print-none mb-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+<div class="d-print-none mb-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
     <div>
-        <h3 class="fw-bold mb-1 text-dark">
-            <i class="bi bi-file-earmark-bar-graph-fill text-danger me-2"></i>Reporte Consolidado de Proyectos
-        </h3>
-        <p class="text-muted small mb-0">Informe académico para comités de evaluación, decanatura y acreditación ICACIT.</p>
+        <h4 class="fw-bold mb-1 text-dark">Reporte Consolidado de Proyectos</h4>
+        <p class="text-muted small mb-0">Informe académico para comités de evaluación y decanatura.</p>
     </div>
-    <div class="d-flex gap-2">
-        <button type="button" class="btn btn-uns-primary btn-sm px-3 shadow-sm" onclick="window.print();">
-            <i class="bi bi-printer-fill me-1"></i> Imprimir Reporte
+    <div>
+        <button type="button" class="btn btn-uns-primary btn-sm" onclick="window.print();">
+            <i class="bi bi-printer me-1"></i> Imprimir Reporte
         </button>
     </div>
 </div>
 
-<!-- Filtros interactivos (ocultos al imprimir) -->
-<div class="card border-0 shadow-sm mb-4 d-print-none">
+<!-- Filtros (ocultos al imprimir) -->
+<div class="card border-0 shadow-sm mb-3 d-print-none">
     <div class="card-body p-3 bg-white">
         <form method="GET" action="reportes.php" class="row g-2 align-items-end">
             <div class="col-md-3">
-                <label class="form-label small fw-bold">Estado:</label>
+                <label class="form-label small">Estado:</label>
                 <select name="estado" class="form-select form-select-sm">
                     <option value="">-- Todos --</option>
                     <option value="Pendiente" <?= $filtroEstado === 'Pendiente' ? 'selected' : '' ?>>Pendiente</option>
@@ -37,7 +35,7 @@ include __DIR__ . '/../../includes/navbar.php';
                 </select>
             </div>
             <div class="col-md-4">
-                <label class="form-label small fw-bold">Estudiante:</label>
+                <label class="form-label small">Estudiante:</label>
                 <select name="estudiante" class="form-select form-select-sm">
                     <option value="">-- Todos los alumnos --</option>
                     <?php foreach ($estudiantes as $est): ?>
@@ -48,7 +46,7 @@ include __DIR__ . '/../../includes/navbar.php';
                 </select>
             </div>
             <div class="col-md-3">
-                <label class="form-label small fw-bold">Fecha desde:</label>
+                <label class="form-label small">Fecha desde:</label>
                 <input type="date" name="fecha" class="form-control form-control-sm" value="<?= htmlspecialchars($filtroFecha ?? '') ?>">
             </div>
             <div class="col-md-2 d-flex gap-2">
@@ -59,22 +57,22 @@ include __DIR__ . '/../../includes/navbar.php';
     </div>
 </div>
 
-<!-- Contenido del Reporte (visible en pantalla y optimizado para imprimir) -->
+<!-- Contenido del Reporte -->
 <div class="uns-card p-4 bg-white">
     <!-- Encabezado Institucional UNS para impresión -->
     <div class="text-center pb-3 mb-3 border-bottom">
-        <h4 class="fw-bold mb-0 text-dark" style="font-family: 'Cinzel', serif;">UNIVERSIDAD NACIONAL DEL SANTA</h4>
-        <h6 class="text-secondary mb-1">FACULTAD DE INGENIERÍA &bull; ESCUELA PROFESIONAL DE INGENIERÍA DE SISTEMAS E INFORMÁTICA</h6>
-        <p class="small text-muted mb-0">Sistema de Gestión de Proyectos y Productos Académicos (SGPP-UNS)</p>
-        <span class="badge bg-light text-dark border mt-2">Reporte emitido el <?= date('d/m/Y H:i:s') ?> &bull; Usuario: <?= htmlspecialchars($_SESSION['usuario_login'] ?? '') ?></span>
+        <h5 class="fw-bold mb-0 text-dark">UNIVERSIDAD NACIONAL DEL SANTA</h5>
+        <div class="small text-secondary mb-1">FACULTAD DE INGENIERÍA &bull; ESCUELA PROFESIONAL DE INGENIERÍA DE SISTEMAS E INFORMÁTICA</div>
+        <div class="small text-muted">Sistema de Gestión de Proyectos y Productos Académicos (SGPP-UNS)</div>
+        <div class="text-muted mt-1" style="font-size: 0.75rem;">Emitido el <?= date('d/m/Y H:i') ?> &bull; Usuario: <?= htmlspecialchars($_SESSION['usuario_login'] ?? '') ?></div>
     </div>
 
     <!-- Resumen Cuantitativo -->
-    <div class="row g-2 mb-4 text-center">
+    <div class="row g-2 mb-3 text-center">
         <div class="col">
             <div class="border rounded p-2 bg-light">
                 <div class="small text-muted">Total</div>
-                <strong><?= (int)($resumen['total_proyectos'] ?? 0) ?></strong>
+                <strong class="text-dark"><?= (int)($resumen['total_proyectos'] ?? 0) ?></strong>
             </div>
         </div>
         <div class="col">
@@ -92,7 +90,7 @@ include __DIR__ . '/../../includes/navbar.php';
         <div class="col">
             <div class="border rounded p-2 bg-light">
                 <div class="small text-muted">Observados</div>
-                <strong class="text-warning text-dark"><?= (int)($resumen['observados'] ?? 0) ?></strong>
+                <strong class="text-warning-emphasis"><?= (int)($resumen['observados'] ?? 0) ?></strong>
             </div>
         </div>
         <div class="col">
@@ -105,13 +103,13 @@ include __DIR__ . '/../../includes/navbar.php';
 
     <!-- Tabla Detallada -->
     <div class="table-responsive">
-        <table class="table table-bordered table-sm align-middle" style="font-size: 0.85rem;">
+        <table class="table table-bordered table-sm align-middle mb-0" style="font-size: 0.85rem;">
             <thead class="table-light text-center">
                 <tr>
-                    <th style="width: 120px;">Código</th>
+                    <th style="width: 100px;">Código</th>
                     <th>Título del Proyecto</th>
                     <th>Estudiante</th>
-                    <th>Línea de Investigación</th>
+                    <th>Línea de Inv.</th>
                     <th>Fechas</th>
                     <th>Entregables</th>
                     <th>Estado</th>
@@ -119,21 +117,19 @@ include __DIR__ . '/../../includes/navbar.php';
             </thead>
             <tbody>
                 <?php if (empty($proyectos)): ?>
-                    <tr><td colspan="7" class="text-center py-3">No hay registros que coincidan con la búsqueda.</td></tr>
+                    <tr><td colspan="7" class="text-center py-3 text-muted">No hay registros con los filtros indicados.</td></tr>
                 <?php else: ?>
                     <?php foreach ($proyectos as $p): ?>
                     <tr>
-                        <td class="text-center font-monospace fw-bold"><?= htmlspecialchars($p['codigo_proyecto']) ?></td>
+                        <td class="text-center font-monospace fw-semibold"><?= htmlspecialchars($p['codigo_proyecto']) ?></td>
+                        <td><strong><?= htmlspecialchars($p['titulo']) ?></strong></td>
                         <td>
-                            <strong><?= htmlspecialchars($p['titulo']) ?></strong>
-                        </td>
-                        <td>
-                            <?= htmlspecialchars($p['estudiante_apellidos'] . ', ' . $p['estudiante_nombres']) ?><br>
-                            <small class="text-muted">Cód: <?= htmlspecialchars($p['codigo_universitario'] ?? '-') ?></small>
+                            <?= htmlspecialchars($p['estudiante_apellidos'] . ', ' . $p['estudiante_nombres']) ?>
+                            <small class="text-muted d-block">(Cód: <?= htmlspecialchars($p['codigo_universitario'] ?? '-') ?>)</small>
                         </td>
                         <td><?= htmlspecialchars($p['linea_investigacion']) ?></td>
                         <td class="text-center small">
-                            <?= date('d/m/Y', strtotime($p['fecha_inicio'])) ?><br>al <?= date('d/m/Y', strtotime($p['fecha_fin_prevista'])) ?>
+                            <?= date('d/m/Y', strtotime($p['fecha_inicio'])) ?> - <?= date('d/m/Y', strtotime($p['fecha_fin_prevista'])) ?>
                         </td>
                         <td class="text-center"><?= (int)$p['total_entregables'] ?></td>
                         <td class="text-center"><?= badgeEstado($p['estado']) ?></td>
@@ -144,8 +140,8 @@ include __DIR__ . '/../../includes/navbar.php';
         </table>
     </div>
 
-    <div class="mt-4 pt-4 border-top text-center text-muted small d-print-block">
-        Documento oficial generado para fines de evaluación y seguimiento académico en la UNS.
+    <div class="mt-3 pt-3 border-top text-center text-muted small d-print-block" style="font-size: 0.75rem;">
+        Documento oficial generado para fines de evaluación y seguimiento académico en la Universidad Nacional del Santa.
     </div>
 </div>
 
