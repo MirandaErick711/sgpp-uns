@@ -7,7 +7,7 @@ $paginaActual = basename($_SERVER['PHP_SELF'], '.php');
 ?>
 <aside class="app-sidebar">
     <div class="sidebar-brand">
-        <img src="assets/img/logo_uns.svg" alt="Logo UNS">
+        <img src="assets/img/logo_uns.png" alt="Logo UNS">
         <div class="brand-text">
             <h1 class="brand-title">SGPP-UNS</h1>
             <span class="brand-sub">Univ. Nac. del Santa</span>

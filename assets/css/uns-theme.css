@@ -564,3 +564,24 @@ body {
     width: 100%;
   }
 }
+.app-main {
+    min-width: 0 !important;
+    width: 0;
+    flex: 1 1 auto;
+}
+
+.content-body {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.content-body > * {
+    max-width: 100%;
+}
+
+.table-responsive {
+    max-width: 100%;
+    overflow-x: auto;
+}

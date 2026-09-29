@@ -16,6 +16,7 @@ include __DIR__ . '/../../includes/header.php';
 include __DIR__ . '/../../includes/sidebar.php';
 include __DIR__ . '/../../includes/navbar.php';
 ?>
+<div class="content-body">
 
 <!-- Banner de Bienvenida -->
 <div class="card border-0 mb-4 text-white shadow-sm" 
@@ -39,7 +40,7 @@ include __DIR__ . '/../../includes/navbar.php';
 </div>
 
 <!-- Tarjetas de Estadísticas Docente -->
-<div class="row g-3 mb-4">
+<div class="row g-3 mb-4 mx-0">
     <div class="col-xl-3 col-sm-6">
         <div class="kpi-card kpi-blue">
             <div class="kpi-info">
@@ -166,6 +167,8 @@ include __DIR__ . '/../../includes/navbar.php';
             </div>
         <?php endif; ?>
     </div>
+</div>
+
 </div>
 
 <?php

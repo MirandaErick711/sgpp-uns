@@ -15,7 +15,7 @@ $paginaActual = basename($_SERVER['PHP_SELF'], '.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) . ' - ' : '' ?>SGPP-UNS (Universidad Nacional del Santa)</title>
     <!-- Favicon institucional -->
-    <link rel="icon" type="image/svg+xml" href="assets/img/logo_uns.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/img/logo_uns.png">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

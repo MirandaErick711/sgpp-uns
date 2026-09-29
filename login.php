@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - SGPP-UNS</title>
-    <link rel="icon" type="image/svg+xml" href="assets/img/logo_uns.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/img/logo_uns.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="login-card-container">
     <div class="login-header">
-        <img src="assets/img/logo_uns.svg" alt="Escudo Universidad Nacional del Santa" class="img-fluid">
+        <img src="assets/img/logo_uns.png" alt="Escudo Universidad Nacional del Santa" class="img-fluid">
         <h4 style="font-family: 'Cinzel', serif;">SGPP-UNS</h4>
         <p class="text-uppercase fw-semibold" style="font-size: 0.76rem; letter-spacing: 1px; color: var(--uns-gold-dark);">
             Universidad Nacional del Santa
@@ -119,34 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar Sesión
             </button>
         </form>
-
-        <!-- Selector rápido de credenciales de demostración universitaria -->
-        <div class="credential-quick-selector">
-            <div class="fw-bold text-secondary mb-2 d-flex align-items-center justify-content-between">
-                <span><i class="bi bi-lightning-charge-fill text-warning me-1"></i> Accesos de Demostración:</span>
-                <span class="badge bg-secondary-subtle text-secondary" style="font-size:0.65rem;">Clave: 123456</span>
-            </div>
-            <div class="d-flex flex-wrap gap-1">
-                <button type="button" class="btn btn-sm btn-outline-danger btn-demo-fill" data-user="estudiante1" data-pass="123456" title="Miranda Vega Erick (Estudiante 1)">
-                    <i class="bi bi-backpack me-1"></i>Estudiante 1
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary btn-demo-fill" data-user="estudiante2" data-pass="123456" title="Flores Carlos (Estudiante 2)">
-                    <i class="bi bi-backpack-fill me-1"></i>Estudiante 2
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-primary btn-demo-fill" data-user="docente1" data-pass="123456" title="Dr. Sixto Díaz Tello (Docente)">
-                    <i class="bi bi-person-workspace me-1"></i>Docente
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-success btn-demo-fill" data-user="coordinador1" data-pass="123456" title="Coordinador de Escuela">
-                    <i class="bi bi-briefcase me-1"></i>Coordinador
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-dark btn-demo-fill" data-user="autoridad1" data-pass="123456" title="Decanatura / Autoridad">
-                    <i class="bi bi-award me-1"></i>Autoridad
-                </button>
-            </div>
-            <div class="text-muted mt-2" style="font-size: 0.72rem;">
-                * Clic en cualquier botón para autocompletar credenciales de prueba.
-            </div>
-        </div>
     </div>
 </div>
 
