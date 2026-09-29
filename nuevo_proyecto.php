@@ -62,9 +62,6 @@ include __DIR__ . '/includes/navbar.php';
             <a href="index.php" class="btn btn-outline-secondary btn-sm">
                 <i class="bi bi-arrow-left me-1"></i> Volver al Dashboard
             </a>
-            <span class="badge bg-danger-subtle text-danger px-3 py-2 border">
-                <i class="bi bi-shield-check me-1"></i> Validación y Transaccionalidad PDO
-            </span>
         </div>
 
         <div class="uns-card shadow-sm">

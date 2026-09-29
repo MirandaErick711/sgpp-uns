@@ -182,7 +182,7 @@ include __DIR__ . '/../../includes/navbar.php';
             <div class="uns-card-body">
                 <ul class="list-group list-group-flush small">
                     <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
-                        <span><i class="bi bi-shield-check text-success me-2 fs-6"></i> Driver DR-01 (Aislamiento de proyectos):</span>
+                        <span><i class="bi bi-shield-check text-success me-2 fs-6"></i> Driver (Aislamiento de proyectos):</span>
                         <span class="badge bg-success-subtle text-success border">Activo y Verificado (100%)</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">

@@ -33,7 +33,7 @@ include __DIR__ . '/../../includes/navbar.php';
         </div>
         <div class="d-flex flex-shrink-0 gap-2">
             <a href="nuevo_proyecto.php" class="btn btn-uns-gold px-3 py-2 text-nowrap shadow-sm">
-                <i class="bi bi-plus-circle-fill me-1"></i> + Nuevo Proyecto
+                <i class="bi bi-plus-circle-fill me-1"></i> Nuevo Proyecto
             </a>
         </div>
     </div>
@@ -85,32 +85,6 @@ include __DIR__ . '/../../includes/navbar.php';
             </div>
             <div class="kpi-icon">
                 <i class="bi bi-chat-left-dots"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Cuadro Explicativo del Driver Arquitectónico DR-01 -->
-<div class="card border-0 mb-4 shadow-sm" style="border-left: 5px solid var(--uns-gold) !important; background: #FFFDF7;">
-    <div class="card-body p-3 p-md-4">
-        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
-            <div>
-                <div class="d-flex align-items-center gap-2 mb-1">
-                    <span class="badge bg-danger text-uppercase px-2 py-1" style="font-size:0.68rem;">Driver DR-01</span>
-                    <strong class="text-danger-emphasis">Demostración de Aislamiento de Proyectos</strong>
-                </div>
-                <p class="mb-0 text-muted small">
-                    El sistema aplica validación estricta en el servidor PHP: un estudiante solo puede consultar o modificar sus propios proyectos.
-                    Si intenta acceder a un ID ajeno (por ejemplo alterando la URL a <code>proyecto.php?id=3</code> que es de <strong>estudiante2</strong>), el sistema deniega el acceso y registra la infracción.
-                </p>
-            </div>
-            <div class="d-flex gap-2 flex-shrink-0">
-                <a href="proyecto.php?id=3" class="btn btn-outline-danger btn-sm text-nowrap" target="_blank" title="Probar vulnerabilidad alterando ID en la URL">
-                    <i class="bi bi-shield-slash me-1"></i> Probar Intento Ajeno (ID=3)
-                </a>
-                <a href="monitoreo.php" class="btn btn-outline-secondary btn-sm text-nowrap">
-                    <i class="bi bi-activity me-1"></i> Monitoreo
-                </a>
             </div>
         </div>
     </div>

@@ -40,15 +40,12 @@ include __DIR__ . '/includes/navbar.php';
             </span>
         </div>
         <p class="text-muted small mb-0">
-            Supervisión arquitectónica en tiempo real, integridad de base de datos, almacenamiento y trazabilidad de seguridad (Driver DR-01).
+            Supervisión arquitectónica en tiempo real, integridad de base de datos, almacenamiento y trazabilidad de seguridad.
         </p>
     </div>
 
     <!-- Botón de prueba en vivo para el Driver DR-01 -->
     <div class="d-flex gap-2">
-        <a href="proyecto.php?id=3" target="_blank" class="btn btn-outline-danger btn-sm shadow-sm" title="Simular intento de acceso no autorizado">
-            <i class="bi bi-shield-slash-fill me-1"></i> Simular Infracción DR-01
-        </a>
         <a href="monitoreo.php" class="btn btn-light btn-sm border" title="Actualizar datos">
             <i class="bi bi-arrow-clockwise"></i> Actualizar
         </a>
@@ -134,30 +131,6 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </div>
 
-<!-- Panel de Demostración del Driver DR-01 -->
-<div class="dr01-alert-box mb-4">
-    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
-        <div>
-            <div class="d-flex align-items-center gap-2 mb-2">
-                <span class="dr01-badge">DRIVER DR-01 EN ACCIÓN</span>
-                <strong class="text-danger">Supervisión del Aislamiento de Proyectos entre Estudiantes</strong>
-            </div>
-            <p class="mb-1 text-secondary" style="font-size: 0.92rem;">
-                Cada intento de acceso a un proyecto ajeno o de descarga ilegal es interceptado por la capa de aplicación PHP 
-                y registrado en esta bitácora con resultado <span class="badge bg-danger">Rechazado</span>.
-            </p>
-            <p class="mb-0 text-muted small">
-                Comprobación: Si inicia sesión como <code>estudiante1</code> y abre <code>proyecto.php?id=3</code> (proyecto de <code>estudiante2</code>), verá la fila correspondiente registrada de inmediato a continuación.
-            </p>
-        </div>
-        <div class="flex-shrink-0">
-            <a href="monitoreo.php?resultado=Rechazado" class="btn btn-outline-danger btn-sm">
-                <i class="bi bi-funnel-fill me-1"></i> Ver Solo Intentos Rechazados (DR-01)
-            </a>
-        </div>
-    </div>
-</div>
-
 <!-- Tabla de Historial de Acciones y Auditoría -->
 <div class="uns-card">
     <div class="uns-card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
@@ -168,7 +141,7 @@ include __DIR__ . '/includes/navbar.php';
         <div class="btn-group btn-group-sm">
             <a href="monitoreo.php" class="btn <?= empty($filtroResultado) ? 'btn-uns-primary' : 'btn-outline-secondary' ?>">Todas</a>
             <a href="monitoreo.php?resultado=Correcto" class="btn <?= $filtroResultado === 'Correcto' ? 'btn-success' : 'btn-outline-success' ?>">Correctas</a>
-            <a href="monitoreo.php?resultado=Rechazado" class="btn <?= $filtroResultado === 'Rechazado' ? 'btn-danger' : 'btn-outline-danger' ?>">Rechazadas (DR-01)</a>
+            <a href="monitoreo.php?resultado=Rechazado" class="btn <?= $filtroResultado === 'Rechazado' ? 'btn-danger' : 'btn-outline-danger' ?>">Rechazadas</a>
         </div>
     </div>
 

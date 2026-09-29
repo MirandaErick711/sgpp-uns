@@ -39,7 +39,7 @@ if ($rolUsuario === 'estudiante') {
             $usuarioId,
             $userLogin,
             $rolUsuario,
-            'Acceso no autorizado (DR-01)',
+            'Acceso no autorizado',
             "Intento denegado de descarga de archivo ID #{$archivoId} ('{$archivo['nombre_original']}') perteneciente a otro estudiante.",
             'Rechazado'
         );

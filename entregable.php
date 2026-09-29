@@ -40,7 +40,7 @@ if ($rolUsuario === 'estudiante') {
             $usuarioId,
             $userLogin,
             $rolUsuario,
-            'Acceso no autorizado (DR-01)',
+            'Acceso no autorizado',
             "Intento bloqueado: El estudiante intentó registrar un entregable/archivo en el proyecto ajeno ID #{$proyectoId}.",
             'Rechazado'
         );

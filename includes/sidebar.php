@@ -26,7 +26,7 @@ $paginaActual = basename($_SERVER['PHP_SELF'], '.php');
                 <i class="bi bi-folder-fill"></i> Mis Proyectos
             </a>
             <a href="nuevo_proyecto.php" class="sidebar-link <?= ($paginaActual === 'nuevo_proyecto') ? 'active' : '' ?>">
-                <i class="bi bi-plus-circle-fill"></i> + Nuevo Proyecto
+                <i class="bi bi-plus-circle-fill"></i>Nuevo Proyecto
             </a>
             <a href="observaciones.php" class="sidebar-link <?= ($paginaActual === 'observaciones') ? 'active' : '' ?>">
                 <i class="bi bi-chat-left-dots-fill"></i> Observaciones
@@ -75,7 +75,7 @@ $paginaActual = basename($_SERVER['PHP_SELF'], '.php');
         <!-- SECCIÓN COMÚN: MONITOREO Y ARQUITECTURA -->
         <div class="nav-section-title">Supervisión y Arquitectura</div>
         <a href="monitoreo.php" class="sidebar-link <?= ($paginaActual === 'monitoreo') ? 'active' : '' ?>">
-            <i class="bi bi-activity"></i> Monitoreo (DR-01)
+            <i class="bi bi-activity"></i> Monitoreo
         </a>
 
         <!-- ACCIONES RÁPIDAS -->

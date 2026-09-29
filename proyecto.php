@@ -31,7 +31,7 @@ $rolUsuario = (string)$_SESSION['usuario_rol'];
 $proyecto = Proyecto::obtenerPorIdConSeguridad($proyectoId, $usuarioId, $rolUsuario, $error_dr01);
 
 if (!$proyecto) {
-    if ($error_dr01 === 'ACCESO_NO_AUTORIZADO_DR01') {
+    if ($error_dr01 === 'ACCESO_NO_AUTORIZADO') {
         // Enviar respuesta 403 Forbidden y renderizar pantalla de rechazo de DR-01
         http_response_code(403);
         include __DIR__ . '/views/error/403.php';
