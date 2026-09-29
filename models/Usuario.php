@@ -18,11 +18,12 @@ class Usuario {
             $sql = "SELECT u.*, r.nombre AS rol_nombre, r.descripcion AS rol_descripcion
                     FROM usuarios u
                     INNER JOIN roles r ON u.rol_id = r.id
-                    WHERE u.usuario = :usuario AND u.activo = 1
+                    WHERE (u.usuario = :u1 OR u.email = :u2 OR u.usuario = CONCAT(:u3, '@uns.edu.pe')) AND u.activo = 1
                     LIMIT 1";
             
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([':usuario' => trim($usuario)]);
+            $uVal = trim($usuario);
+            $stmt->execute([':u1' => $uVal, ':u2' => $uVal, ':u3' => $uVal]);
             $user = $stmt->fetch();
 
             if ($user && password_verify($password, $user['password'])) {

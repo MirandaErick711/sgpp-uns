@@ -19,27 +19,27 @@
   --uns-sidebar-width: 260px;
 }
 
-/* Base de dimensiones */
-html,
-body {
-  width: 100%;
-  min-width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
+/* Reset y dimensiones base */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+html,
 body {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: var(--uns-bg);
   color: var(--uns-text);
-  min-height: 100vh;
-  margin: 0;
+}
+
+body {
   display: flex;
   flex-direction: column;
 }
@@ -49,18 +49,20 @@ body {
    ==================================================================== */
 
 .app-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: var(--uns-sidebar-width) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar navbar"
+    "sidebar main";
+  min-height: 100vh;
   width: 100%;
   max-width: 100%;
   min-width: 0;
-  min-height: 100vh;
-  flex: 1 1 auto;
 }
 
 .app-sidebar {
-  flex: 0 0 var(--uns-sidebar-width);
+  grid-area: sidebar;
   width: var(--uns-sidebar-width);
   max-width: var(--uns-sidebar-width);
   background: linear-gradient(180deg, var(--uns-red-dark) 0%, var(--uns-red) 100%);
@@ -69,7 +71,7 @@ body {
   flex-direction: column;
   flex-shrink: 0;
   box-shadow: 3px 0 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  transition: left 0.3s ease;
   z-index: 1000;
 }
 
@@ -204,18 +206,8 @@ body {
    MAIN CONTENT AREA
    ==================================================================== */
 
-.app-main {
-  flex: 1 1 0%;
-  width: calc(100% - var(--uns-sidebar-width));
-  max-width: calc(100% - var(--uns-sidebar-width));
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--uns-bg);
-  overflow-x: hidden;
-}
-
 .top-navbar {
+  grid-area: navbar;
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -237,11 +229,6 @@ body {
 }
 
 .top-navbar-title {
-  min-width: 0;
-  white-space: nowrap;
-}
-
-.top-navbar-title {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -249,6 +236,20 @@ body {
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--uns-red-dark);
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.app-main {
+  grid-area: main;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--uns-bg);
+  overflow-x: hidden;
 }
 
 .content-body {
@@ -258,7 +259,6 @@ body {
   min-width: 0;
   padding: 1.75rem;
   box-sizing: border-box;
-  overflow-x: auto;
 }
 
 /* ====================================================================
@@ -266,6 +266,9 @@ body {
    ==================================================================== */
 
 .uns-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: var(--uns-surface);
   border: 1px solid var(--uns-border);
   border-radius: 10px;
@@ -475,6 +478,19 @@ body {
    TABLAS Y FORMULARIOS
    ==================================================================== */
 
+.table-responsive {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.uns-table {
+  width: 100%;
+  min-width: 900px;
+}
+
 .uns-table thead th {
   background-color: #F8FAFC;
   color: var(--uns-text);
@@ -643,165 +659,43 @@ body {
 }
 
 /* ====================================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN (< 992px)
    ==================================================================== */
 
 @media (max-width: 992px) {
+  .app-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+  }
 
   .app-sidebar {
     position: fixed;
+    top: 0;
     left: -260px;
     height: 100vh;
+    z-index: 1050;
   }
 
   .app-sidebar.show {
     left: 0;
   }
 
-  .app-main {
-    margin-left: 0;
+  .top-navbar {
     width: 100%;
-    max-width: 100%;
-  }
-}
-
-.uns-card {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  background: var(--uns-surface);
-  border: 1px solid var(--uns-border);
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  overflow: hidden;
-}
-
-.table-responsive {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  overflow-x: auto;
-}
-
-.uns-table {
-  width: 100%;
-  min-width: 900px;
-}
-
-/* ====================================================================
-   LOGIN SCREEN
-   ==================================================================== */
-
-.login-page-body {
-  min-height: 100vh;
-  background-color: var(--uns-red-dark);
-  background-image: url('../img/login_bg.svg');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-}
-
-.login-card-container {
-  width: 100%;
-  max-width: 440px;
-  background: #FFFFFF;
-  border-radius: 14px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-  overflow: hidden;
-  border-top: 5px solid var(--uns-gold);
-}
-
-.login-header {
-  text-align: center;
-  padding: 2.2rem 2rem 1.2rem;
-  background: #FFFFFF;
-}
-
-.login-header img {
-  width: 90px;
-  height: 90px;
-  margin-bottom: 1rem;
-}
-
-.login-header h4 {
-  font-weight: 800;
-  color: var(--uns-red-dark);
-  margin-bottom: 0.25rem;
-  letter-spacing: 0.5px;
-}
-
-.login-header p {
-  color: var(--uns-text-muted);
-  font-size: 0.88rem;
-  margin: 0;
-}
-
-.login-body {
-  padding: 1.5rem 2rem 2.2rem;
-}
-
-.credential-quick-selector {
-  background-color: #F8FAFC;
-  border: 1px dashed #CBD5E1;
-  border-radius: 8px;
-  padding: 0.85rem;
-  margin-top: 1.25rem;
-  font-size: 0.78rem;
-}
-
-
-/* ====================================================================
-   RESPONSIVE DESIGN
-   ==================================================================== */
-
-@media (max-width: 992px) {
-
-  .app-sidebar {
-    position: fixed;
-    left: -260px;
-    height: 100vh;
-  }
-
-  .app-sidebar.show {
-    left: 0;
+    min-width: 0;
+    padding: 0 1rem;
   }
 
   .app-main {
     margin-left: 0;
     width: 100%;
     max-width: 100%;
+    min-width: 0;
   }
-}
 
-
-/* ====================================================================
-   TARJETAS Y TABLAS
-   ==================================================================== */
-
-.uns-card {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  background: var(--uns-surface);
-  border: 1px solid var(--uns-border);
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  overflow: hidden;
-}
-
-.table-responsive {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  overflow-x: auto;
-}
-
-.uns-table {
-  width: 100%;
-  min-width: 900px;
+  .content-body {
+    padding: 1rem;
+  }
 }

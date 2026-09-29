@@ -39,7 +39,7 @@ include __DIR__ . '/../../includes/navbar.php';
 </div>
 
 <!-- Tarjetas de Estadísticas Docente -->
-<div class="row g-3 mb-4 mx-0">
+<div class="row g-3 mb-4">
     <div class="col-xl-3 col-sm-6">
         <div class="kpi-card kpi-blue">
             <div class="kpi-info">
