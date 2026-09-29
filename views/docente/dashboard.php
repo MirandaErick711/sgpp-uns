@@ -16,7 +16,6 @@ include __DIR__ . '/../../includes/header.php';
 include __DIR__ . '/../../includes/sidebar.php';
 include __DIR__ . '/../../includes/navbar.php';
 ?>
-<div class="content-body">
 
 <!-- Banner de Bienvenida -->
 <div class="card border-0 mb-4 text-white shadow-sm" 
@@ -167,8 +166,6 @@ include __DIR__ . '/../../includes/navbar.php';
             </div>
         <?php endif; ?>
     </div>
-</div>
-
 </div>
 
 <?php
